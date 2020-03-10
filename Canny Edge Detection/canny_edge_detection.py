@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 
-#Edge Detection Algorithm Which Takes An Image With Noise Reduction Applied
+#Canny Edge Detector Which Takes An Input Image With Guassian Blur Applied
 def myCannyEdgeDetectionAlgo(image):
     
     img = np.asarray(image, dtype= np.float32)
@@ -48,12 +48,13 @@ def myCannyEdgeDetectionAlgo(image):
                 if(edgeGradient[i][j] > edgeGradient[i-1][j-1]) and (edgeGradient[i][j] > edgeGradient[i+1][j+1]):
                     suppressionMatrix[i][j] = edgeGradient[i][j]
     
-    #return edgeGradient
+    #Double Thresholding
     low = 5
     high = 15
     suppressionMatrix[suppressionMatrix <= low] = 0
     suppressionMatrix[suppressionMatrix >= high] = 255
     
+    #Hysterisis
     for i in range(0, rows-2):
         for j in range(0, cols-2):
             if(suppressionMatrix[i][j] != 0 and suppressionMatrix[i][j] != 255):
@@ -67,8 +68,8 @@ def myCannyEdgeDetectionAlgo(image):
     return suppressionMatrix
     
 
-readImage = cv.imread("lena.jpg", 0)
-blur = cv.GaussianBlur(readImage,(3,3),0)
+readImage = cv.imread("readImage.jpg", 0) #Grayscale
+blur = cv.GaussianBlur(readImage,(3,3),0) #Guassian Blur with 3x3 Kernel
 output = myCannyEdgeDetectionAlgo(blur)
 cv.imwrite("Edge.jpg", output)
             
