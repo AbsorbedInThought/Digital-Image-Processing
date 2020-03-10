@@ -1,5 +1,7 @@
 #Author: Taha
 
+#This code is used to train object classifier on Oxford Dataset.
+
 #Libraries
 ################################
 import glob
@@ -22,8 +24,8 @@ RESIZE_WIDTH = 64
 NO_OF_IMAGES = 100
 
 #Directory Information
-IMAGES_REPO = "Bombay/"
-XML_ANNOTATIONS = "Bombay_XML/"
+IMAGES_REPO = "Bombay/" #Path to Dataset
+XML_ANNOTATIONS = "Bombay_XML/" #Path to Annotation
 
 #HOG Configuration
 WINDOW_SIZE = (64,64)
@@ -33,7 +35,7 @@ CELL_SIZE = (8,8)
 NBINS = 9
 ################################
 
-def computeHOG(image):
+def computeHOG(image): #Histogram of Oriented Gradients
     hog = cv.HOGDescriptor(WINDOW_SIZE,BLOCK_SIZE,BLOCK_STRIDE,CELL_SIZE,NBINS)
     return hog.compute(image)
     
@@ -72,7 +74,7 @@ len_test = int(NO_OF_IMAGES - len_training)
 test_set = np.zeros(len_test, dtype = 'uint16')
 training_set = np.zeros(len_training, dtype = 'uint16')
 
-def distribute_images():
+def distribute_images(): #Split Test & Training Data Randomly
 
     index_train = 0
     index_test = 0
@@ -139,11 +141,15 @@ for i in test_set:
     negative_HOG_vectors.append(computeHOG(img))
         
     
+#Train any classifier below
+
 #Classifier = RandomForestClassifier(n_estimators = 300, max_depth=None,
 #min_samples_split=2, random_state=0, verbose=0, n_jobs=4)    
 
 #training = np.copy(positive_HOG_vectors)
 #np.append(training, negative_HOG_vectors)
+
+#Classifier.fit()
 
 
 
