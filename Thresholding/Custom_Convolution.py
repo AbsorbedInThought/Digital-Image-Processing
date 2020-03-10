@@ -1,6 +1,8 @@
 import cv2 as cv
 import numpy as np
 
+#Can be used to apply any kernel such as Sobel, Laplacian etc to an image.
+
 def customConvolve(image, kernel, major):
    
     gridSize, gridSize2 = kernel.shape #Getting Dimensions Of Kernel
@@ -36,11 +38,10 @@ def customConvolve(image, kernel, major):
     print("Done")
     return work
 
-my_image = cv.imread("01.jpg", 0)
+my_image = cv.imread("readImage.jpg", 0)
 work_image = my_image.copy()
 
-#kernel = np.array([[-1,0,1],[-1,0,1],[-1,0,1]])
-kernel = np.array([[-1,0], [0,1]])
+kernel = np.array([[-1,0,1],[-1,0,1],[-1,0,1]])
 major = 1
 
 returnImage = customConvolve(work_image, kernel, major)
