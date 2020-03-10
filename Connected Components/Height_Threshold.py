@@ -1,18 +1,13 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Oct 31 19:44:47 2019
-
-@author: Taha
-"""
-
 import cv2 as cv
 
 ##################
 #Common Tweaks
 NEIGHBORS = 8
 THRESH_VAL = 127
-IMAGE_NAME = "circuit.png"
+IMAGE_NAME = "readImage.jpg"
 #################
+
+#Selects connected components of an image within a specific height threshold
 
 img = cv.imread(IMAGE_NAME, 0)
 ret,image = cv.threshold(img,THRESH_VAL,255,cv.THRESH_BINARY)
@@ -31,4 +26,4 @@ for i in range(0, rows):
         else:
             objects[i][j] = 0
         
-cv.imwrite("output.png", objects)
+cv.imwrite("output.jpg", objects)
