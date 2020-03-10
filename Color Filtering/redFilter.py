@@ -1,7 +1,9 @@
 import cv2
 import numpy as np
 
-img = cv2.imread("red.jpg", 1)
+#Applies a Red Color Filter to the Image
+
+img = cv2.imread("readImage.jpg", 1)
 
 imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
@@ -13,6 +15,7 @@ mask = cv2.bitwise_or(filter1, filter2)
 
 output = cv2.bitwise_and(img,img, mask=mask)
 
+#Shows Input and Output Image Side by Side
 myoutput = np.concatenate((img, output), axis = 1)
 
 cv2.imwrite("myoutput.jpg", myoutput)
