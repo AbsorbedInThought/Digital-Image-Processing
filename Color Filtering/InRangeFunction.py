@@ -26,8 +26,9 @@ def myInRange(img, HueLow, SatLow, valueLow, HueHigh, SatHigh, valueHigh):
         i=i+1
     return img
         
-img = cv2.imread("red.jpg", 1)
+img = cv2.imread("readImage.jpg", 1)
 
+#image, HueLow, SatLow, valueLow, HueHigh, SatHigh, valueHigh
 output = myInRange(img, 0, 0, 0, 10, 255,255)
 
 cv2.imwrite("outputImage.jpg", output)
