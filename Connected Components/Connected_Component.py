@@ -1,17 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Oct 31 21:15:20 2019
-
-@author: Taha
-"""
-
 import cv2 as cv
 
 ##################
 #Common Tweaks
-IMAGE_NAME = "circuit.png"
+IMAGE_NAME = "readImage.jpg"
 THRESH_VAL= 127
-OUTPUT_IMAGE = "output.png"
+OUTPUT_IMAGE = "output.jpg"
 #################
 
 def isSurrounded(image, i, j):
